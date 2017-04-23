@@ -17,7 +17,7 @@ public class ConexaoBD {
     private String driver = "org.postgresql.Driver";
     private String caminho = "jdbc:postgresql://localhost:5432/projetoclinica";
     private String usuario = "postgres";
-    private String senha = "1";
+    private String senha = "1234";
     public Connection con;
     
     public void conexao(){//metodo responsavel por realizar conexao com a base de dados

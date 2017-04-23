@@ -43,7 +43,7 @@ public class FormMedico extends javax.swing.JFrame {
         jButtonExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMedico = new javax.swing.JTable();
-        jTextFieldPesquisar = new javax.swing.JTextField();
+        jTextFieldPesquisa = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -103,6 +103,11 @@ public class FormMedico extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableMedico);
 
         jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +129,7 @@ public class FormMedico extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFormattedTextFieldCrm, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonPesquisar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -155,7 +160,7 @@ public class FormMedico extends javax.swing.JFrame {
                             .addComponent(jFormattedTextFieldCrm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonPesquisar))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -223,6 +228,16 @@ public class FormMedico extends javax.swing.JFrame {
         jComboBoxEspecialista.setEnabled(true);
         jButtonSalvar.setEnabled(true);
     }//GEN-LAST:event_jButtonNovoActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        mod.setPesquisa(jTextFieldPesquisa.getText());
+        BeansMedico model = control.buscaMedico(mod);
+        jTextFieldNome.setText(model.getNome());
+        jFormattedTextFieldCrm.setText(String.valueOf(model.getCrm()));
+        jComboBoxEspecialista.setSelectedItem(model.getEspecialidade());
+        jButtonEditar.setEnabled(true);
+        jButtonExcluir.setEnabled(true);
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -273,6 +288,6 @@ public class FormMedico extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMedico;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldPesquisar;
+    private javax.swing.JTextField jTextFieldPesquisa;
     // End of variables declaration//GEN-END:variables
 }

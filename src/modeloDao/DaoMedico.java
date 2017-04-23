@@ -28,6 +28,25 @@ try{
     JOptionPane.showMessageDialog(null, "Erro ao inserir dados!\nErro: "+ex);
 }
     conex.desconecta();
+
 }   
-}
+public BeansMedico buscaMedico(BeansMedico mod){
+    conex.conexao();
+conex.executasql("select * from medicos where nome_medico like'%"+mod.getPesquisa()+"%'");
+    
+    try{
+        conex.rs.first();
+        mod.setCodigo(conex.rs.getInt("cod_medico"));
+        mod.setNome(conex.rs.getString("nome_medico"));
+        mod.setEspecialidade(conex.rs.getString("especialidade_medico"));    
+        mod.setCrm(conex.rs.getInt("crm_medico"));
+        
+    }catch (SQLException ex){
+          JOptionPane.showMessageDialog(null, "Erro ao buscar medico!\nErro: "+ex);
+    }
+    
+    conex.desconecta();
+    return mod;
+    }
+} 
 
